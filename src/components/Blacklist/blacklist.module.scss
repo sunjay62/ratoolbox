@@ -123,3 +123,10 @@
   padding: 5px 10px;
   width: max-content;
 }
+
+@media (max-width: 860px) {
+  .form {
+    flex-direction: column;
+    gap: 15px;
+  }
+}

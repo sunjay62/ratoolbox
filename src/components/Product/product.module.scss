@@ -94,3 +94,14 @@
   background-color: #007bff;
   color: #fff;
 }
+
+@media (max-width: 860px) {
+  .mainContainer {
+    padding: 15px;
+  }
+  .cardContainer {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+}

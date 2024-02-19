@@ -17,10 +17,10 @@ const index = () => {
       <div className="menuContainer flex justify-between items-center ">
         <div className="img">
           <Link href="/" onClick={() => handleMenuClick('Blacklist')}>
-            <Image src="/assets/logoremala.png" alt="Logo" width={75} height={100} />
+            <Image className={`${styles.image}`} src="/assets/logoremala.png" alt="Logo" width={75} height={100} />
           </Link>
         </div>
-        <div className={`${styles.navbarMenu} flex gap-2 `}>
+        <div className={`${styles.navbarMenu}  flex gap-2 `}>
           <Link
             href="/"
             className={`menu-item ${

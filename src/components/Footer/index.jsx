@@ -79,6 +79,7 @@ const index = () => {
             </div>
           </div>
         </div>
+        <br />
         <hr />
         <div className={`${styles.footerBottom} `}>
           <p>Copyright&copy; Remala Group 2024 All Right Reserved</p>
