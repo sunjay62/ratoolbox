@@ -129,4 +129,17 @@
     flex-direction: column;
     gap: 15px;
   }
+
+  .tableWrapper {
+    overflow-x: auto;
+    white-space: nowrap;
+  }
+
+  .ant-table {
+    min-width: 100%;
+  }
+
+  .backgroundTable {
+    background-color: #fff;
+  }
 }
