@@ -213,7 +213,9 @@ const index = () => {
               </motion.div>
               <Dropdown isOpen={isOpen[index]}>
                 <DropdownItem key={item.ip}>
-                  <Table key={item.ip} columns={columns} dataSource={item.result_detected} />
+                  <div className={styles.tableWrapper}>
+                    <Table className={`${styles.tableBlacklist}`} key={item.ip} columns={columns} dataSource={item.result_detected} rowClassName={() => styles.backgroundTable} />
+                  </div>
                 </DropdownItem>
               </Dropdown>
             </div>
