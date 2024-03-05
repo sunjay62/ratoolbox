@@ -1,0 +1,11 @@
+version: '3.8'
+
+services:
+  portal-nethome:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    ports:
+      - "3002:80"
+    volumes:
+      - ./nginx/logs:/var/log/nginx
