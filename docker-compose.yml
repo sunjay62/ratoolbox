@@ -6,6 +6,4 @@ services:
       context: .
       dockerfile: Dockerfile
     ports:
-      - "3002:80"
-    volumes:
-      - ./nginx/logs:/var/log/nginx
+      - "3002:3002"
