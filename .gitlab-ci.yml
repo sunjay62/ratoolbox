@@ -6,7 +6,7 @@ variables:
   # Definisikan variabel yang dibutuhkan
 
 before_script:
-  - echo "test"
+  - echo "menjalankan ci/cd"
 
 build:
   stage: build
