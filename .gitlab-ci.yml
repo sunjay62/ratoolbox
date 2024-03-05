@@ -27,8 +27,6 @@ deploy:
     - docker ps -a | grep nethome
     - sleep 10s
     - docker-compose logs
-    - cat ./nginx/logs/access.log
-    - cat ./nginx/logs/error.log
       #nginx config
     - cd ./nginx
     - current_path=$(pwd)
