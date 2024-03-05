@@ -16,7 +16,7 @@ build:
     - docker-compose down
   only:
     - dev
-    - merge_requests
+ #   - merge_requests
 
 deploy:
   stage: deploy
@@ -38,5 +38,5 @@ deploy:
     - service nginx reload
   only:
     - dev
-    - merge_requests
+ #   - merge_requests
     
