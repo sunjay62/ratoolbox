@@ -1,0 +1,44 @@
+stages:
+  - build
+  - deploy
+
+variables:
+  # Definisikan variabel yang dibutuhkan
+
+before_script:
+  - echo "test"
+
+build:
+  stage: build
+  script:
+    - echo "Building the project..."
+    - docker-compose build
+    - docker-compose down
+  only:
+    - dev
+    - merge_requests
+
+deploy:
+  stage: deploy
+  script:
+    - echo "Deploying to environment..."
+    - docker-compose up -d
+    - sleep 10s
+    - docker ps -a | grep nethome
+    - sleep 10s
+    - docker-compose logs
+    - cat ./nginx/logs/access.log
+    - cat ./nginx/logs/error.log
+      #nginx config
+    - cd ./nginx
+    - current_path=$(pwd)
+    - pwd
+    - name_between_opt_and_nginx=$(echo "$current_path" | awk -F'/' '{print $(NF-1)}')
+    - cp reverse-proxy.conf  $name_between_opt_and_nginx
+    - echo "name_between_opt_and_nginx"
+    - mv $name_between_opt_and_nginx /etc/nginx/sites-enabled/
+    - service nginx reload
+  only:
+    - dev
+    - merge_requests
+    
