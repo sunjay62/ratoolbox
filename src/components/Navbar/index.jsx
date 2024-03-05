@@ -5,7 +5,7 @@ import Link from 'next/link';
 import React from 'react';
 import styles from './navbar.module.scss';
 
-const index = () => {
+const Index = () => {
   const [activeMenu, setActiveMenu] = useState('');
 
   const handleMenuClick = (menuName) => {
@@ -31,6 +31,17 @@ const index = () => {
             onClick={() => handleMenuClick('Blacklist')}
           >
             Blacklist
+          </Link>
+          <Link
+            href="/looking-glass"
+            className={`menu-item ${
+              activeMenu === 'LookingGlass'
+                ? 'bg-color-hover text-color-primary p-4 pt-1 pb-1 rounded-lg transition-all hover:text-color-primary'
+                : 'hover:bg-color-hover text-color-hovertwo  p-4 pt-1 pb-1 rounded-lg transition-all hover:text-color-primary'
+            }`}
+            onClick={() => handleMenuClick('LookingGlass')}
+          >
+            Looking Glass
           </Link>
           <Link
             href="/speedtest"
@@ -71,4 +82,4 @@ const index = () => {
   );
 };
 
-export default index;
+export default Index;

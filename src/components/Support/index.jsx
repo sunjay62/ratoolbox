@@ -8,7 +8,7 @@ import AOS from 'aos';
 import 'aos/dist/aos.css';
 import styles from './support.module.scss';
 
-const index = () => {
+const Index = () => {
   useEffect(() => {
     AOS.init({
       duration: 1300,
@@ -35,4 +35,4 @@ const index = () => {
   );
 };
 
-export default index;
+export default Index;

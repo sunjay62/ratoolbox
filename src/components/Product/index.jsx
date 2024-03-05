@@ -7,7 +7,7 @@ import 'aos/dist/aos.css';
 import Image from 'next/image';
 import Link from 'next/link';
 
-const index = () => {
+const Index = () => {
   useEffect(() => {
     AOS.init({
       duration: 1300,
@@ -48,4 +48,4 @@ const index = () => {
   );
 };
 
-export default index;
+export default Index;
