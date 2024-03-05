@@ -8,7 +8,7 @@ import YouTubeIcon from '@mui/icons-material/YouTube';
 import LinkedInIcon from '@mui/icons-material/LinkedIn';
 import Image from 'next/image';
 
-const index = () => {
+const Index = () => {
   return (
     <>
       <div className={`${styles.mainFooter} ${styles.stickyFooter}`}>
@@ -89,4 +89,4 @@ const index = () => {
   );
 };
 
-export default index;
+export default Index;

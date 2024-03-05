@@ -23,7 +23,7 @@ const Dropdown = ({ isOpen, children }) => (
 
 const DropdownItem = ({ children }) => <motion.div className={`p-2 rounded-lg ${styles.dropdownItem}`}>{children}</motion.div>;
 
-const index = () => {
+const Index = () => {
   const [ip, setIp] = useState('');
   const [data, setData] = useState([]);
   const [isOpen, setIsOpen] = useState({});
@@ -82,10 +82,11 @@ const index = () => {
         return <span className={styles[statusClass]}>{statusText}</span>;
       },
     },
+
     {
       title: 'Blacklist',
-      dataIndex: 'provider',
-      key: 'provider',
+      dataIndex: 'blacklist',
+      key: 'blacklist',
       width: '30%',
     },
     {
@@ -234,4 +235,4 @@ const index = () => {
   );
 };
 
-export default index;
+export default Index;
