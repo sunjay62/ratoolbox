@@ -1,5 +1,5 @@
 import React from 'react';
-import Hyperglass from '@/components/Hyperglass/Hyperglass';
+import Hyperglass from '@/components/Hyperglass';
 
 const page = () => {
   return (

@@ -29,6 +29,7 @@ const Index = () => {
   const [isOpen, setIsOpen] = useState({});
   const [isInputFocused, setIsInputFocused] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
+  const [lengthTimeout, setLengthTimeout] = useState('');
 
   useEffect(() => {
     AOS.init({
@@ -82,13 +83,6 @@ const Index = () => {
         return <span className={styles[statusClass]}>{statusText}</span>;
       },
     },
-
-    {
-      title: 'Blacklist',
-      dataIndex: 'blacklist',
-      key: 'blacklist',
-      width: '30%',
-    },
     {
       title: 'Reason',
       dataIndex: 'provider',
@@ -99,12 +93,6 @@ const Index = () => {
       title: 'Category',
       dataIndex: 'categories',
       key: 'categories',
-    },
-    {
-      title: 'Response Time',
-      dataIndex: 'responsetime',
-      key: 'responsetime',
-      sorter: (a, b) => a.responsetime - b.responsetime,
     },
   ];
 
@@ -117,19 +105,26 @@ const Index = () => {
     try {
       const response = await axios.post(`${BASE_URL}/rblcheck/check`, formData);
       const responseData = response.data;
-      console.log(responseData);
 
       // Iterate over each result_detected array separately
       responseData.forEach((item, index) => {
-        const statusCounts = {};
+        const statusCounts = { notlisted: 0, listed: 0, timeout: 0 }; // Initialize counts
+
         item.result_detected.forEach((result) => {
           const status = result.status;
-          statusCounts[status] = (statusCounts[status] || 0) + 1;
+          if (status === 0) {
+            statusCounts.notlisted++;
+          } else if (status === 1) {
+            statusCounts.listed++;
+          } else if (status === 3) {
+            statusCounts.timeout++;
+          }
         });
 
-        console.log(statusCounts);
+        setLengthTimeout(statusCounts.timeout);
       });
 
+      console.log(responseData);
       setData(responseData);
       setIsLoading(false);
       Swal.close();
@@ -142,11 +137,20 @@ const Index = () => {
       console.error(error);
       setIsLoading(false);
       Swal.close();
-      Swal.fire({
-        title: 'Error!',
-        icon: 'error',
-        text: 'Failed to perform IP inspection, please enter a valid IP address or domain.',
-      });
+
+      if (error.code === 'ERR_NETWORK') {
+        Swal.fire({
+          title: 'Service Unavailable!',
+          icon: 'error',
+          text: 'The service is currently unavailable. Please try again later.',
+        });
+      } else {
+        Swal.fire({
+          title: 'Error!',
+          icon: 'error',
+          text: 'Failed to perform IP inspection, please enter a valid IP address or domain.',
+        });
+      }
     }
   };
 
@@ -206,7 +210,7 @@ const Index = () => {
                 <Globe className="text-color-secondary" size={24} />
                 <p>
                   Checking <span className="text-color-hovertwo font-bold">{item.ip}</span> against <span className="text-color-success font-bold">{item.jml_providers}</span> known blacklists ... <br />
-                  Listed <span className="text-color-danger font-bold">{item.jml_detected}</span> times
+                  Listed <span className="text-color-danger font-bold">{item.jml_detected}</span> times with <span className="text-color-danger font-bold">{lengthTimeout}</span> timeouts
                 </p>
                 <motion.div animate={{ rotate: isOpen[index] ? 180 : 0 }} transition={{ duration: 0.3 }} className={`ml-auto`} style={{ originX: 0.5, originY: 0.5 }}>
                   <CaretDown size={18} className="transform transition-all" />

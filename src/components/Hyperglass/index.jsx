@@ -14,7 +14,7 @@ const Index = () => {
 
   return (
     <div className={styles.hyperglass} data-aos="fade-up">
-      <iframe className={styles.iframe} src="http://172.16.36.218:8001/" frameborder="0"></iframe>
+      <iframe className={styles.iframe} src="http://172.16.35.130/" frameborder="0"></iframe>
     </div>
   );
 };
